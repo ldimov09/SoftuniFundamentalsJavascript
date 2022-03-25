@@ -8,7 +8,7 @@
   <title>Document</title>
   <style type="text/css">
     input {
-      width: 666.6666px;
+      width: 1332px;
       font-size: 30px;
       font-family: "consolas", Courier, monospace;
     }
@@ -31,26 +31,25 @@
 <body>
   ENCRYPT MESSSAGE: <br /><br />
 
-  <input id="input" type="text" maxlength="40" /><br />
+  <input id="input" type="text" /><br />
   ENCRYPTED: <span id="span"></span><br />
   DECRYPTED: <span id="span2"></span><br />
   <button id="clear">clear</button><br /><br />
   DECRYPT MESSSAGE: <br /><br />
-  <input id="input2" type="text" maxlength="40" /><br />
+  <input id="input2" type="text"  /><br />
   DECRYPTED: <span id="span12"></span><br />
   ENCRYPTED: <span id="span22"></span><br />
   <button id="clear2">clear</button><br />
   <script>
     let text = document.getElementById("input").value;
     let increment = 1;
-    document
-      .getElementById("clear")
-      .addEventListener("click", function clear() {
-        document.getElementById("span").innerHTML = "";
-        document.getElementById("span2").innerHTML = "";
-        increment = 1;
-      });
+
     document.getElementById("input").addEventListener("change", function () {
+      document.getElementById("span").innerHTML = "";
+      document.getElementById("span2").innerHTML = "";
+      let key = Math.floor(Math.random() * 9);
+      increment = key;
+      document.getElementById("span").innerHTML += key;
       text = document.getElementById("input").value;
       for (let letter of text.split("")) {
         let regex = /[A-Z]|[0-9]|[\._-]|[a-z]/g;
@@ -125,7 +124,7 @@
           document.getElementById("span2").innerHTML += letter;
           let index = chars.indexOf(letter);
           index += increment;
-          increment++;
+          increment += key;
           if (index >= chars.length) index -= chars.length;
           if (increment > 30) {
             increment = 1;
@@ -142,10 +141,15 @@
     //============================================================================
 
     let text2 = document.getElementById("input2").value;
-    let increment2 = 1;
+    let increment2;
     document.getElementById("input2").addEventListener("change", function () {
+      document.getElementById("span12").innerHTML = "";
       text2 = document.getElementById("input2").value;
-      for (let letter2 of text2.split("")) {
+      let key2 = Number(text2.charAt(0));
+      document.getElementById("span22").innerHTML = key2;
+      increment2 = key2;
+      for (let i = 1; i < text2.split("").length; i++) {
+        letter2 = text2.split("")[i];
         let regex = /[A-Z]|[0-9]|[\._-]|[a-z]/g;
         let chars = [
           "-",
@@ -218,7 +222,7 @@
           document.getElementById("span22").innerHTML += letter2;
           let index = chars.indexOf(letter2);
           index -= increment2;
-          increment2++;
+          increment2 += key2;
           if (index < 0) index += chars.length;
           if (increment2 > 30) {
             increment2 = 1;
@@ -233,17 +237,6 @@
       document.getElementById("input2").value = "";
     });
 
-    document
-      .getElementById("clear2")
-      .addEventListener("click", function clear2() {
-        document.getElementById("span12").innerHTML = "";
-        document.getElementById("span22").innerHTML = "";
-        increment2 = 1;
-      });
-
-    let a = [
-
-    ];
   </script>
 </body>
 
