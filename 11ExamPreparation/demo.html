@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style type="text/css">
+    input {
+      width: 666.6666px;
+      font-size: 30px;
+      font-family: "consolas", Courier, monospace;
+    }
+
+    span {
+      font-size: 30px;
+      font-family: "consolas", Courier, monospace;
+      color: darkgoldenrod;
+      font-weight: bold;
+    }
+
+    body {
+      font-size: 30px;
+      font-weight: bold;
+      font-family: "consolas", Courier, monospace;
+    }
+  </style>
+</head>
+
+<body>
+  ENCRYPT MESSSAGE: <br /><br />
+
+  <input id="input" type="text" maxlength="40" /><br />
+  ENCRYPTED: <span id="span"></span><br />
+  DECRYPTED: <span id="span2"></span><br />
+  <button id="clear">clear</button><br /><br />
+  DECRYPT MESSSAGE: <br /><br />
+  <input id="input2" type="text" maxlength="40" /><br />
+  DECRYPTED: <span id="span12"></span><br />
+  ENCRYPTED: <span id="span22"></span><br />
+  <button id="clear2">clear</button><br />
+  <script>
+    let text = document.getElementById("input").value;
+    let increment = 1;
+    document
+      .getElementById("clear")
+      .addEventListener("click", function clear() {
+        document.getElementById("span").innerHTML = "";
+        document.getElementById("span2").innerHTML = "";
+        increment = 1;
+      });
+    document.getElementById("input").addEventListener("change", function () {
+      text = document.getElementById("input").value;
+      for (let letter of text.split("")) {
+        let regex = /[A-Z]|[0-9]|[\._-]|[a-z]/g;
+        let chars = [
+          "-",
+          "1",
+          "z",
+          "4",
+          "v",
+          "Y",
+          "H",
+          "Z",
+          "A",
+          "J",
+          "w",
+          "f",
+          "_",
+          "N",
+          "e",
+          "D",
+          "8",
+          "X",
+          "L",
+          "r",
+          "s",
+          "5",
+          "S",
+          "m",
+          "I",
+          "a",
+          "q",
+          "j",
+          "G",
+          "p",
+          "K",
+          "7",
+          "R",
+          "Q",
+          "C",
+          "B",
+          "h",
+          "l",
+          "T",
+          "2",
+          "b",
+          "i",
+          "9",
+          "U",
+          "3",
+          "O",
+          "E",
+          "t",
+          "o",
+          "P",
+          "n",
+          "u",
+          "g",
+          "c",
+          "d",
+          "W",
+          "x",
+          "k",
+          "0",
+          "6",
+          "M",
+          "y",
+          "V",
+          "F",
+          ".",
+        ];
+        if (letter.match(regex) !== null) {
+          document.getElementById("span2").innerHTML += letter;
+          let index = chars.indexOf(letter);
+          index += increment;
+          increment++;
+          if (index >= chars.length) index -= chars.length;
+          if (increment > 30) {
+            increment = 1;
+          }
+          letter = chars[index];
+          document.getElementById("span").innerHTML += letter;
+        } else {
+          document.getElementById("span2").innerHTML += "?";
+          document.getElementById("span").innerHTML += "?";
+        }
+      }
+      document.getElementById("input").value = "";
+    });
+    //============================================================================
+
+    let text2 = document.getElementById("input2").value;
+    let increment2 = 1;
+    document.getElementById("input2").addEventListener("change", function () {
+      text2 = document.getElementById("input2").value;
+      for (let letter2 of text2.split("")) {
+        let regex = /[A-Z]|[0-9]|[\._-]|[a-z]/g;
+        let chars = [
+          "-",
+          "1",
+          "z",
+          "4",
+          "v",
+          "Y",
+          "H",
+          "Z",
+          "A",
+          "J",
+          "w",
+          "f",
+          "_",
+          "N",
+          "e",
+          "D",
+          "8",
+          "X",
+          "L",
+          "r",
+          "s",
+          "5",
+          "S",
+          "m",
+          "I",
+          "a",
+          "q",
+          "j",
+          "G",
+          "p",
+          "K",
+          "7",
+          "R",
+          "Q",
+          "C",
+          "B",
+          "h",
+          "l",
+          "T",
+          "2",
+          "b",
+          "i",
+          "9",
+          "U",
+          "3",
+          "O",
+          "E",
+          "t",
+          "o",
+          "P",
+          "n",
+          "u",
+          "g",
+          "c",
+          "d",
+          "W",
+          "x",
+          "k",
+          "0",
+          "6",
+          "M",
+          "y",
+          "V",
+          "F",
+          ".",
+        ];
+        if (letter2.match(regex) !== null) {
+          document.getElementById("span22").innerHTML += letter2;
+          let index = chars.indexOf(letter2);
+          index -= increment2;
+          increment2++;
+          if (index < 0) index += chars.length;
+          if (increment2 > 30) {
+            increment2 = 1;
+          }
+          letter2 = chars[index];
+          document.getElementById("span12").innerHTML += letter2;
+        } else {
+          document.getElementById("span22").innerHTML += "?";
+          document.getElementById("span12").innerHTML += "?";
+        }
+      }
+      document.getElementById("input2").value = "";
+    });
+
+    document
+      .getElementById("clear2")
+      .addEventListener("click", function clear2() {
+        document.getElementById("span12").innerHTML = "";
+        document.getElementById("span22").innerHTML = "";
+        increment2 = 1;
+      });
+
+    let a = [
+
+    ];
+  </script>
+</body>
+
+</html>
